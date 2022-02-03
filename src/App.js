@@ -4,7 +4,7 @@ import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Main from './components/Main/Main'
 import {csv} from 'd3'
-import {VictoryBar, VictoryChart} from 'victory'
+import {VictoryBar, VictoryChart, VictoryAxis} from 'victory'
 // const studentData = require('./data/data.json')
 
 // const data = [
@@ -17,13 +17,24 @@ import {VictoryBar, VictoryChart} from 'victory'
 function App() {
   const [data, setData] = useState([])
 
-  const row = d => {
-    d.difficulty = +d.difficulty
-    return d
-}
+//   const row = d => {
+//     d.difficulty = +d.difficulty
+//     return d
+// }
+
 
   useEffect(() => { 
-    csv('./data/data.csv', row).then(setData)
+    csv('./data/data.csv').then((response) => {
+      console.log('response: ',response)
+      const cleanedData = response.map(row => {
+        return {
+            ...row,
+            difficulty :  +row.difficulty,
+            funFactor : +row.funFactor
+        }
+        
+    })
+  })
   },[])
   
 
@@ -42,7 +53,19 @@ console.log('data: ',data)
           domainPadding={50}
           padding={{top: 10, bottom: 40, left: 80, right: 100}}
         >
-          <VictoryBar data={data} x='exercise' y='difficulty' />
+          <VictoryAxis
+          // tickValues specifies both the number of ticks and where
+          // they are placed on the axis
+          tickValues={[1, 2, 3, 4]}
+          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
+        />
+        <VictoryAxis
+          dependentAxis
+          // tickFormat specifies how ticks should be displayed
+          tickFormat={(x) => (`$${x / 1000}k`)}
+        />
+          <VictoryBar data={data} x='quarter' y='earnings' />
+          
         </VictoryChart>
         
       </div>
