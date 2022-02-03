@@ -1,0 +1,19 @@
+*, *::before, *::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    height: fit-content;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background: rgb(65, 39, 65);
+    color: rgb(239, 231, 234);
+}
+
+.header-title {
+    padding: 1rem;
+    text-transform: uppercase;
+}
+

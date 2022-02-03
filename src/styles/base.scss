@@ -1,0 +1,16 @@
+*, *::before, *::after {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(44,5,44);
+    color: rgb(239, 231, 234);
+    width: 100vw;
+    height: auto;
+} 
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}

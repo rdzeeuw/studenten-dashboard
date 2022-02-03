@@ -1,0 +1,20 @@
+*, *::before, *::after {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: #2c052c;
+  color: #efe7ea;
+  width: 100vw;
+  height: auto;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 3fr;
+      grid-template-columns: 1fr 3fr;
+}
+/*# sourceMappingURL=base.css.map */
