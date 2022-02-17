@@ -4,74 +4,83 @@ import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Main from './components/Main/Main'
 import {csv} from 'd3'
-import {VictoryBar, VictoryChart, VictoryAxis} from 'victory'
-// const studentData = require('./data/data.json')
-
-// const data = [
-//   {quarter: 'a', earnings: '13000'},
-//   {quarter: 'b', earnings: '16500'},
-//   {quarter: 'c', earnings: '14250'},
-//   {quarter: 'd', earnings: '19000'}
-// ]
+import csvData from './data/data.csv'
 
 function App() {
-  const [data, setData] = useState([])
+  const [studentData, setStudentData] = useState([])
+  const [filteredData, setFilteredData] = useState(studentData)
+ 
+  
+  
+  const studentArray = studentData.map(item => item.name)
+  const students = [...new Set(studentArray)]
+  
+  // const difficultyAverage = difficultyArray.reduce((acc,v,i,a)=>(acc+v/a.length),0)
+  console.log('student data: ', studentData)
+  
 
-//   const row = d => {
-//     d.difficulty = +d.difficulty
-//     return d
-// }
 
-
+  // fetching data and setting state --------------------------
   useEffect(() => { 
-    csv('./data/data.csv').then((response) => {
-      console.log('response: ',response)
+    csv(csvData).then((response) => {
+      // console.log('response: ',response)
       const cleanedData = response.map(row => {
         return {
             ...row,
             difficulty :  +row.difficulty,
-            funFactor : +row.funFactor
+            funFactor : +row.enjoyment
         }
-        
-    })
-  })
+    }) 
+    setStudentData(cleanedData)
+    setFilteredData(cleanedData)
+  }) 
   },[])
-  
 
-console.log('data: ',data)  
+  const exercises = studentData.map(item => item.exercise).slice(0,56)
+
+function getAverageScore(exercise) {
+  let exerciseArray = []
+  studentData.map(item => {
+    if(item.exercise === exercise){
+      exerciseArray.push(item.difficulty)
+      return exerciseArray
+    } 
+  })
+  // const average = (array) => array.reduce((a, b) => a + b) / array.length;
+  // averageArray.push(average(exerciseArray))
+  // console.log(averageArray)
+  console.log(exerciseArray)
+}
+
+exercises.map(exercise => {
+  return getAverageScore(exercise)
+})
+
+function filterByName(event) {
+  const value = event.target.value
+
+  const filtered = studentData.filter((item) => {
+    if(item.name === value) {
+      return item
+    } else if(value === "allStudents"){
+      return item
+    } 
+
+  })
+  console.log(filtered)
+  setFilteredData(filtered)
+}
+
 
   return (
     <div className="App">
       <Header />  
       <div className="container">
-        <SideBar />
-        {/* <Main data={data}/> */}
-        <VictoryChart
-          style={{tickLabels: {fontSize: 120}}}
-          width='860'
-          height='300'
-          domainPadding={50}
-          padding={{top: 10, bottom: 40, left: 80, right: 100}}
-        >
-          <VictoryAxis
-          // tickValues specifies both the number of ticks and where
-          // they are placed on the axis
-          tickValues={[1, 2, 3, 4]}
-          tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-        />
-        <VictoryAxis
-          dependentAxis
-          // tickFormat specifies how ticks should be displayed
-          tickFormat={(x) => (`$${x / 1000}k`)}
-        />
-          <VictoryBar data={data} x='quarter' y='earnings' />
-          
-        </VictoryChart>
-        
-      </div>
-      
+        <SideBar students={students} exercises={exercises} filterByName={filterByName}/>
+        <Main data={filteredData} students={students} exercises={exercises}/>
+      </div> 
     </div>
-  );
+  )
 }
 
 export default App;

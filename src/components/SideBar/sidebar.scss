@@ -5,7 +5,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-inline: 3rem;
     h3 {
         padding: 1em;
+    }
+    .checkboxes {
+        display: flex;
+        flex-direction: column;
+        input {
+            margin: .5em;
+        }
     }
 }

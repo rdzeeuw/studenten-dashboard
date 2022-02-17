@@ -12,9 +12,24 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-inline: 3rem;
 }
 
 .side-bar h3 {
   padding: 1em;
+}
+
+.side-bar .checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.side-bar .checkboxes input {
+  margin: .5em;
 }
 /*# sourceMappingURL=sidebar.css.map */
