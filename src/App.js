@@ -9,9 +9,8 @@ import csvData from './data/data.csv'
 function App() {
   const [studentData, setStudentData] = useState([])
   const [filteredData, setFilteredData] = useState(studentData)
- 
   
-  
+  const exercises = studentData.map(item => item.exercise).slice(0,56)
   const studentArray = studentData.map(item => item.name)
   const students = [...new Set(studentArray)]
   
@@ -36,25 +35,27 @@ function App() {
   }) 
   },[])
 
-  const exercises = studentData.map(item => item.exercise).slice(0,56)
+
 
 function getAverageScore(exercise) {
   let exerciseArray = []
   studentData.map(item => {
     if(item.exercise === exercise){
       exerciseArray.push(item.difficulty)
-      return exerciseArray
     } 
   })
-  // const average = (array) => array.reduce((a, b) => a + b) / array.length;
-  // averageArray.push(average(exerciseArray))
-  // console.log(averageArray)
-  console.log(exerciseArray)
+
+  const averages = exerciseArray.reduce((a,b) => a + b / exerciseArray.length)
+  console.log(averages)
+  return averages
+  
 }
 
+
 exercises.map(exercise => {
-  return getAverageScore(exercise)
+ getAverageScore(exercise)
 })
+
 
 function filterByName(event) {
   const value = event.target.value
