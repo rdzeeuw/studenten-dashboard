@@ -1,12 +1,16 @@
-import React from 'react';
-import './main.css'
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import {VictoryBar, VictoryChart, VictoryAxis, VictoryGroup, VictoryLabel, VictoryZoomContainer} from 'victory'
+import './user-profile.css'
 
-function Main({data, student, exercises, formData}) {
+function UserProfile({data, student, exercises, formData}) {
+    let navigate = useNavigate()
+    let { username } = useParams()
 
   return (
-    <main className="main">
-        <h3 className="main-title">Welcome students!</h3>
+    <div className="user-content">
+        <h1 className="welcome">Welcome {username}!</h1>
+        <button onClick={() => navigate('/')}>Go back</button>
 
         <VictoryChart width={800} height={400}
           domainPadding={{x: 15}}
@@ -15,9 +19,9 @@ function Main({data, student, exercises, formData}) {
             <VictoryZoomContainer/>
           }
         >
-          <VictoryLabel text="Difficulty (yellow) and fun (red) rating of all students" x={425} y={0} textAnchor="middle"/>
+          <VictoryLabel text={`Difficulty (yellow) and fun (red) rating of ${username}`} x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  
-            style={{ tickLabels: { angle: -40, fontSize: 7, padding: 20} }} 
+            style={{ tickLabels: { angle: -40, fontSize: 10, padding: 30} }} 
             tickValues={[exercises]} 
             
             />
@@ -26,29 +30,28 @@ function Main({data, student, exercises, formData}) {
           {formData.difficulty &&
             <VictoryBar 
               style={{ data: { fill: "tomato"} }} 
-              data={data} 
+              data={data.slice(0,25)} 
               x='exercise' 
               y='difficulty'
               alignment="start"
-              barRatio={2}  
+              barRatio={1}  
               // animate 
               />
-            }
+          }
           {formData.funFactor &&
             <VictoryBar 
               style={{ data: { fill: "gold"} }} 
-              data={data} 
+              data={data.slice(0,25)} 
               x='exercise' 
               y='funFactor' 
-              barRatio={2}
+              barRatio={1}
             />
           }
             </VictoryGroup>
            
         </VictoryChart>
-        
-    </main>
-    )
+    </div>
+  )
 }
 
-export default Main;
+export default UserProfile

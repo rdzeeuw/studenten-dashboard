@@ -1,28 +1,30 @@
 import React, {useState, useEffect} from 'react'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './styles/base.css';
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Main from './components/Main/Main'
 import {csv} from 'd3'
 import csvData from './data/data.csv'
+import UserProfile from './components/UserProfile/UserProfile';
 
 function App() {
   const [studentData, setStudentData] = useState([])
   const [filteredData, setFilteredData] = useState(studentData)
+  const [formData, setFormData] = useState(
+    {
+      difficulty: true,
+      funFactor: true
+    })
+  const [averageData, setAverageData] = useState([])
   
   const exercises = studentData.map(item => item.exercise).slice(0,56)
   const studentArray = studentData.map(item => item.name)
   const students = [...new Set(studentArray)]
-  
-  // const difficultyAverage = difficultyArray.reduce((acc,v,i,a)=>(acc+v/a.length),0)
-  console.log('student data: ', studentData)
-  
-
 
   // fetching data and setting state --------------------------
   useEffect(() => { 
     csv(csvData).then((response) => {
-      // console.log('response: ',response)
       const cleanedData = response.map(row => {
         return {
             ...row,
@@ -32,54 +34,103 @@ function App() {
     }) 
     setStudentData(cleanedData)
     setFilteredData(cleanedData)
+    getAverageScore()
   }) 
   },[])
 
-
-
-function getAverageScore(exercise) {
-  let exerciseArray = []
-  studentData.map(item => {
-    if(item.exercise === exercise){
-      exerciseArray.push(item.difficulty)
-    } 
+  // handl checkboxes en setting formData state ----------------
+function handleFormData(event) {
+  const {name, value, type, checked} = event.target
+  setFormData(prevData => {
+    return {
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value
+    }
   })
-
-  const averages = exerciseArray.reduce((a,b) => a + b / exerciseArray.length)
-  console.log(averages)
-  return averages
-  
 }
 
-
-exercises.map(exercise => {
- getAverageScore(exercise)
-})
-
-
+// handle button clicks en filtering data ------------------
 function filterByName(event) {
-  const value = event.target.value
+  const name = event.target.name
 
   const filtered = studentData.filter((item) => {
-    if(item.name === value) {
+    if(item.name === name) {
       return item
-    } else if(value === "allStudents"){
-      return item
-    } 
-
+    } else {
+      return ''
+    }
   })
   console.log(filtered)
   setFilteredData(filtered)
 }
 
+// calculating average scores ---------------------------
+function getAverageScore() {
+  let difficultyArray = []
+
+  exercises.map(exerciseItem => {
+    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem),
+    avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
+    difficultyArray.push(avgDiff)
+    return difficultyArray
+  })
+
+  let funFactorArray = []
+  exercises.map(exerciseItem => {
+    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem),
+    avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
+    funFactorArray.push(avgFun)
+    return funFactorArray
+  })
+
+  setAverageData({
+    difficulty: difficultyArray,
+    funFactor: funFactorArray
+  })
+ console.log(difficultyArray);
+ console.log(funFactorArray);
+
+}
+
+
+console.log(averageData)
+
+
 
   return (
     <div className="App">
-      <Header />  
-      <div className="container">
-        <SideBar students={students} exercises={exercises} filterByName={filterByName}/>
-        <Main data={filteredData} students={students} exercises={exercises}/>
-      </div> 
+      <Router>
+        <Header />  
+        <div className="container">
+          <SideBar 
+            students={students} 
+            exercises={exercises} 
+            filterByName={filterByName}
+            handleFormData={handleFormData}
+            formData={formData}/>
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Main 
+                        data={filteredData} 
+                        students={students} 
+                        exercises={exercises}
+                        formData={formData}
+                      />} 
+            />
+            <Route 
+              path="/:username" 
+              element={<UserProfile 
+                        data={filteredData} 
+                        students={students} 
+                        exercises={exercises}
+                        formData={formData}
+                      />} 
+            />
+          </Routes>
+        </div> 
+      </Router>
+      
     </div>
   )
 }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACV,MAAM,EAAE,SAAS;CAOpB;;AARD,AAII,aAJS,CAIT,QAAQ,CAAC;EACL,SAAS,EAAE,GAAG;EACd,cAAc,EAAE,SAAS;CAC5B",
+    "sources": [
+        "user-profile.scss"
+    ],
+    "names": [],
+    "file": "user-profile.css"
+}

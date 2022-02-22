@@ -1,41 +1,52 @@
 import React from 'react';
 import './sidebar.css'
+import {Link} from 'react-router-dom'
 
-function SideBar({students, exercises, filterByName}) {
+function SideBar({students, exercises, handleFormData, formData, filterByName}) {
   return (
     <section className="side-bar">
         <h3>sidebar</h3>
-        <form>
-          
-          <label htmlFor="student">Select a student</label>
-          <select onChange={filterByName} name="name">
-            <option name="student" value=''>-- Select a name --</option>
-            <option name="allStudents" value="allStudents">All Students</option>
-            {students.map(student => {
-              return (
-                <option name={student} value={student} key={student}>{student}</option>
+        <div className="student-btns">
+          <Link to='/'>
+            <button 
+              className="student-btn"
+              name="allStudents"
+              onClick={filterByName}>All students</button>
+          </Link>
+          {students.map(student => {
+            return (
+              <Link to={`/${student}`} key={student.name}>
+                <button 
+                  className="student-btn"
+                  name={student}
+                  onClick={filterByName}>{student}</button>
+                  </Link>
               )
             })}
-          </select>
-         
-          <label htmlFor="exercise">Select an exercise</label>
-          <select>
-            <option name="exercise" value="">-- Select an exercise --</option>
-            {exercises.map(exercise => {
-              return (
-                <option name={exercise} value={exercise} key={exercise}>{exercise}</option>
-              )
-            })}
-          </select>
+        </div>    
 
+          <br></br>
+        <form>
           <label htmlFor="checkboxes">Select data output</label>
           <div className="checkboxes">
             <label htmlFor="difficulty">
-              <input type="checkbox" value="" name="funFactor"></input>
+              <input 
+                type="checkbox" 
+                id="difficulty" 
+                name="difficulty"
+                checked={formData.difficulty}
+                onChange={handleFormData}>  
+              </input>
               Difficulty
             </label>
             <label htmlFor="funFactor">
-              <input type="checkbox" value="" name="funFactor"></input>
+              <input 
+                type="checkbox" 
+                name="funFactor"
+                id="funFactor" 
+                checked={formData.funFactor}
+                onChange={handleFormData}>
+              </input>
               Fun Factor
             </label>
           </div>
