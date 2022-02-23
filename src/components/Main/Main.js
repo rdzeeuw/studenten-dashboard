@@ -4,6 +4,7 @@ import {VictoryBar, VictoryChart, VictoryAxis, VictoryGroup, VictoryLabel, Victo
 
 function Main({data, student, exercises, formData}) {
 
+
   return (
     <main className="main">
         <h3 className="main-title">Welcome students!</h3>
@@ -44,9 +45,7 @@ function Main({data, student, exercises, formData}) {
             />
           }
             </VictoryGroup>
-           
         </VictoryChart>
-        
     </main>
     )
 }

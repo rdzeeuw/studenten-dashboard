@@ -16,7 +16,6 @@ function App() {
       difficulty: true,
       funFactor: true
     })
-  const [averageData, setAverageData] = useState([])
   
   const exercises = studentData.map(item => item.exercise).slice(0,56)
   const studentArray = studentData.map(item => item.name)
@@ -34,8 +33,12 @@ function App() {
     }) 
     setStudentData(cleanedData)
     setFilteredData(cleanedData)
-    getAverageScore()
+    
   }) 
+  },[])
+
+  useEffect(() => {
+    getAverageScore()
   },[])
 
   // handl checkboxes en setting formData state ----------------
@@ -66,35 +69,20 @@ function filterByName(event) {
 
 // calculating average scores ---------------------------
 function getAverageScore() {
-  let difficultyArray = []
+  let avgArray = []
 
   exercises.map(exerciseItem => {
     let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem),
     avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
-    difficultyArray.push(avgDiff)
-    return difficultyArray
+    const avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
+    avgArray.push({
+      avgDiff: avgDiff, 
+      avgFun: avgFun
+    })
+    return avgArray
   })
-
-  let funFactorArray = []
-  exercises.map(exerciseItem => {
-    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem),
-    avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
-    funFactorArray.push(avgFun)
-    return funFactorArray
-  })
-
-  setAverageData({
-    difficulty: difficultyArray,
-    funFactor: funFactorArray
-  })
- console.log(difficultyArray);
- console.log(funFactorArray);
-
+ console.log(avgArray);
 }
-
-
-console.log(averageData)
-
 
 
   return (
@@ -129,8 +117,7 @@ console.log(averageData)
             />
           </Routes>
         </div> 
-      </Router>
-      
+      </Router> 
     </div>
   )
 }
