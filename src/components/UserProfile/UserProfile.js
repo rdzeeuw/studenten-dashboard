@@ -14,10 +14,10 @@ function UserProfile({data, student, exercises, formData}) {
 
         <VictoryChart width={800} height={300}
           domainPadding={{x: 5}}
-          padding={{top: 30, bottom: 100, left: 50, right: 50}}
-          containerComponent={
-            <VictoryZoomContainer/>
-          }
+          padding={{top: 30, bottom: 100, left: 70, right: 70}}
+          // containerComponent={
+          //   <VictoryZoomContainer/>
+          // }
         >
           <VictoryLabel text={`Difficulty (yellow) and fun (red) rating of ${username}`} x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  

@@ -11,16 +11,19 @@ function Main({data, student, exercises, formData, avgData}) {
 
         <VictoryChart width={800} height={300}
           domainPadding={{x: 15}}
-          // padding={{top: 10, bottom: 10, left: 50, right: 50}}
-          containerComponent={
-            <VictoryZoomContainer/>
-          }
+          padding={{top: 30, bottom: 100, left: 70, right: 70}}
+          // containerComponent={
+          //   <VictoryZoomContainer/>
+          // }
         >
           <VictoryLabel text="Difficulty (yellow) and fun (red) rating of all students" x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  
-            style={{ tickLabels: { angle: -40, fontSize: 7, padding: 20} }} 
+            // style={{ tickLabels: { angle: -40, fontSize: 7, padding: 20} }} 
             tickValues={[exercises]} 
-            
+            tickLabelComponent={
+              <VictoryLabel 
+                dy={-6} 
+                style={{ angle: -40, fontSize: 10, padding: 30, textAnchor: "end"}} />}
             />
           <VictoryAxis dependentAxis tickFormat={(tick) => `${Math.round(tick)}`}/>
           <VictoryGroup offset={-5}>
