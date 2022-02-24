@@ -2,9 +2,9 @@ import React from 'react';
 import './main.css'
 import {VictoryBar, VictoryChart, VictoryAxis, VictoryGroup, VictoryLabel, VictoryZoomContainer} from 'victory'
 
-function Main({data, student, exercises, formData}) {
+function Main({data, student, exercises, formData, avgData}) {
 
-
+  console.log(data)
   return (
     <main className="main">
         <h3 className="main-title">Welcome students!</h3>
@@ -29,7 +29,7 @@ function Main({data, student, exercises, formData}) {
               style={{ data: { fill: "tomato"} }} 
               data={data} 
               x='exercise' 
-              y='difficulty'
+              y='avgDifficulty'
               alignment="start"
               barRatio={2}  
               // animate 
@@ -40,7 +40,7 @@ function Main({data, student, exercises, formData}) {
               style={{ data: { fill: "gold"} }} 
               data={data} 
               x='exercise' 
-              y='funFactor' 
+              y='avgFun' 
               barRatio={2}
             />
           }

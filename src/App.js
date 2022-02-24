@@ -16,6 +16,7 @@ function App() {
       difficulty: true,
       funFactor: true
     })
+  const [avgData, setAvgData] = useState([])
   
   const exercises = studentData.map(item => item.exercise).slice(0,56)
   const studentArray = studentData.map(item => item.name)
@@ -32,13 +33,13 @@ function App() {
         }
     }) 
     setStudentData(cleanedData)
-    setFilteredData(cleanedData)
+    setFilteredData(getAverageScore())
     
   }) 
   },[])
 
   useEffect(() => {
-    getAverageScore()
+    // getAverageScore()
   },[])
 
   // handl checkboxes en setting formData state ----------------
@@ -55,16 +56,22 @@ function handleFormData(event) {
 // handle button clicks en filtering data ------------------
 function filterByName(event) {
   const name = event.target.name
+  if(name === 'allStudents'){
+    const filtered = avgData
+    console.log(filtered)
+    setFilteredData(filtered)
+  } else {
+    const filtered = studentData.filter((item) => {
+      if(item.name === name) {
+        return item
+      } else {
+        return ''
+      }
+    })
 
-  const filtered = studentData.filter((item) => {
-    if(item.name === name) {
-      return item
-    } else {
-      return ''
-    }
-  })
-  console.log(filtered)
-  setFilteredData(filtered)
+    console.log(filtered)
+    setFilteredData(filtered)
+} 
 }
 
 // calculating average scores ---------------------------
@@ -72,17 +79,22 @@ function getAverageScore() {
   let avgArray = []
 
   exercises.map(exerciseItem => {
-    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem),
-    avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
+    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem)
+    // console.log(filteredData)
+    const avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
     const avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
     avgArray.push({
-      avgDiff: avgDiff, 
-      avgFun: avgFun
+      avgDifficulty: avgDiff,
+      avgFun: avgFun,
+      exercise: exerciseItem
     })
-    return avgArray
+    
   })
  console.log(avgArray);
+ setAvgData(avgArray)
 }
+
+
 
 
   return (
@@ -104,6 +116,7 @@ function getAverageScore() {
                         students={students} 
                         exercises={exercises}
                         formData={formData}
+                        avgData={avgData}
                       />} 
             />
             <Route 
