@@ -12,9 +12,13 @@
       -ms-flex-align: start;
           align-items: start;
   background: white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .main-title {
   padding: 1em;
+  margin-bottom: 2em;
 }
 /*# sourceMappingURL=main.css.map */

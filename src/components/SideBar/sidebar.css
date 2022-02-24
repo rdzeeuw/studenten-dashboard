@@ -1,6 +1,6 @@
 .side-bar {
   min-width: 250px;
-  height: 90vh;
+  height: auto;
   background-color: #9c8b92;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -23,10 +23,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .side-bar .checkboxes input {

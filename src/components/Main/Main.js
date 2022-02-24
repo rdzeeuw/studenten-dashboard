@@ -9,7 +9,7 @@ function Main({data, student, exercises, formData, avgData}) {
     <main className="main">
         <h3 className="main-title">Welcome students!</h3>
 
-        <VictoryChart width={800} height={400}
+        <VictoryChart width={800} height={300}
           domainPadding={{x: 15}}
           // padding={{top: 10, bottom: 10, left: 50, right: 50}}
           containerComponent={
@@ -23,15 +23,15 @@ function Main({data, student, exercises, formData, avgData}) {
             
             />
           <VictoryAxis dependentAxis tickFormat={(tick) => `${Math.round(tick)}`}/>
-          <VictoryGroup>
+          <VictoryGroup offset={-5}>
           {formData.difficulty &&
             <VictoryBar 
               style={{ data: { fill: "tomato"} }} 
               data={data} 
               x='exercise' 
               y='avgDifficulty'
-              alignment="start"
-              barRatio={2}  
+              // alignment="start"
+              barRatio={1}  
               // animate 
               />
             }

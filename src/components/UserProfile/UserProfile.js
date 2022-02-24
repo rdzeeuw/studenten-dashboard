@@ -12,28 +12,39 @@ function UserProfile({data, student, exercises, formData}) {
         <h1 className="welcome">Welcome {username}!</h1>
         <button onClick={() => navigate('/')}>Go back</button>
 
-        <VictoryChart width={800} height={400}
-          domainPadding={{x: 15}}
-          // padding={{top: 10, bottom: 10, left: 50, right: 50}}
+        <VictoryChart width={800} height={300}
+          domainPadding={{x: 5}}
+          padding={{top: 30, bottom: 100, left: 50, right: 50}}
           containerComponent={
             <VictoryZoomContainer/>
           }
         >
           <VictoryLabel text={`Difficulty (yellow) and fun (red) rating of ${username}`} x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  
-            style={{ tickLabels: { angle: -40, fontSize: 10, padding: 30} }} 
+          //   style={{ 
+          //     tickLabels: { angle: -40, fontSize: 10, padding: 30},
+             
+          //  }} 
             tickValues={[exercises]} 
-            
+            tickLabelComponent={
+              <VictoryLabel 
+                dy={-6} 
+                style={{ angle: -40, fontSize: 10, padding: 30, textAnchor: "end"}} />}
             />
-          <VictoryAxis dependentAxis tickFormat={(tick) => `${Math.round(tick)}`}/>
-          <VictoryGroup>
+          <VictoryAxis dependentAxis 
+            tickFormat={(tick) => `${Math.round(tick)}`}
+            style={{
+              ticks: {size: 5}
+            }}/>
+          <VictoryGroup offset={-5}>
           {formData.difficulty &&
             <VictoryBar 
               style={{ data: { fill: "tomato"} }} 
-              data={data.slice(0,25)} 
+              data={data} 
+              
               x='exercise' 
               y='difficulty'
-              alignment="start"
+              // alignment="start"
               barRatio={1}  
               // animate 
               />
@@ -41,7 +52,7 @@ function UserProfile({data, student, exercises, formData}) {
           {formData.funFactor &&
             <VictoryBar 
               style={{ data: { fill: "gold"} }} 
-              data={data.slice(0,25)} 
+              data={data} 
               x='exercise' 
               y='funFactor' 
               barRatio={1}
