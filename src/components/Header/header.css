@@ -23,13 +23,23 @@
   padding: .5em;
 }
 
-.header .header-title {
+.header .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .logo .header-title {
   padding: 1rem;
   text-transform: uppercase;
   position: relative;
 }
 
-.header h3 {
+.header .logo h3 {
   color: var(--color-black-3);
   position: absolute;
   top: 60px;

@@ -92,14 +92,4 @@
   color: var(--color-black-2);
   text-align: center;
 }
-
-.side-bar .checkboxes {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.side-bar .checkboxes input {
-  margin: .5em;
-}
 /*# sourceMappingURL=sidebar.css.map */

@@ -1,5 +1,5 @@
 .main {
-  margin: 0rem auto;
+  margin: 2rem auto;
   width: 100%;
   padding: 1em 3em;
   color: var(--color-black-2);
@@ -9,5 +9,16 @@
 .main .welcome {
   font-size: 2em;
   text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+.main .checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main .checkboxes input {
+  margin: .5em;
 }
 /*# sourceMappingURL=main.css.map */

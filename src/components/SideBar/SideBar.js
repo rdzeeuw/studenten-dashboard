@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import { GoPerson as Person } from "react-icons/go";
 import { BsFillPeopleFill as People } from "react-icons/bs";
 
-function SideBar({students, exercises, handleFormData, formData, filterByName}) {
+function SideBar({students, handleFormData, formData, filterByName}) {
   return (
     <section className="side-bar">
         <h3>Select a user Profile</h3>
@@ -26,33 +26,7 @@ function SideBar({students, exercises, handleFormData, formData, filterByName}) 
               )
             })}
         </div>    
-
-          <br></br>
-        <form>
-          <label htmlFor="checkboxes">Select data output</label>
-          <div className="checkboxes">
-            <label htmlFor="difficulty">
-              <input 
-                type="checkbox" 
-                id="difficulty" 
-                name="difficulty"
-                checked={formData.difficulty}
-                onChange={handleFormData}>  
-              </input>
-              Difficulty
-            </label>
-            <label htmlFor="funFactor">
-              <input 
-                type="checkbox" 
-                name="funFactor"
-                id="funFactor" 
-                checked={formData.funFactor}
-                onChange={handleFormData}>
-              </input>
-              Fun Factor
-            </label>
-          </div>
-        </form>
+         
     </section>
   )
 }

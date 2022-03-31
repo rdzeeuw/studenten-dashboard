@@ -2,10 +2,26 @@
     margin: 2rem auto;
     width: 100%;
     padding: 1em 3em;
-    padding-bottom: 5rem;
+    padding-bottom: 7rem;
     .welcome {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         font-size: 2em;
         text-transform: uppercase;
+        
+    }
+    .student-info {
+      display: flex;
+      align-items: center;
+      gap: 3em;
+      background-color: var(--color-purple);
+      color: var(--color-white);
+      padding: .2em;
+      .avatar {
+        width: 100px;
+        aspect-ratio: 1;
+      }
     }
     .back-btn {
         position: relative;

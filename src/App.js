@@ -4,6 +4,7 @@ import './styles/base.css';
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Main from './components/Main/Main'
+import Footer from './components/Footer/Footer'
 import {csv} from 'd3'
 import csvData from './data/data.csv'
 import UserProfile from './components/UserProfile/UserProfile';
@@ -14,9 +15,10 @@ function App() {
   const [formData, setFormData] = useState(
     {
       difficulty: true,
-      funFactor: true
+      funFactor: true,
+      lineGraph: false
     })
-  const [avgData, setAvgData] = useState([])
+  const [mockData, setMockData] = useState([])
   
   const exercises = studentData.map(item => item.exercise).slice(0,56)
   const studentArray = studentData.map(item => item.name)
@@ -33,17 +35,31 @@ function App() {
         }
     }) 
     setStudentData(cleanedData)
-    // const filtered = getAverageScore()
-    // setFilteredData(filtered)
-    
   }) 
   },[])
 
-  useEffect(() => {
-    // getAverageScore()
+
+  function getMockData() {
+    fetch('mock_data.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }).then(function(response){
+        // console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        // console.log(myJson);
+        setMockData(myJson)
+      })
+  }
+
+  useEffect(()=> {
+    getMockData()
   },[])
 
-  // handl checkboxes en setting formData state ----------------
+  // handle checkboxes and setting formData state ----------------
 function handleFormData(event) {
   const {name, value, type, checked} = event.target
   setFormData(prevData => {
@@ -59,7 +75,7 @@ function filterByName(event) {
   const name = event.target.name
   if(name === 'allStudents'){
     const filtered = getAverageScore()
-    console.log(filtered)
+    // console.log(filtered)
     setFilteredData(filtered)
   } else {
     const filtered = studentData.filter((item) => {
@@ -70,9 +86,9 @@ function filterByName(event) {
       }
     })
 
-    console.log(filtered)
+    // console.log(filtered)
     setFilteredData(filtered)
-} 
+  } 
 }
 
 // calculating average scores ---------------------------
@@ -89,12 +105,14 @@ function getAverageScore() {
       avgFun: avgFun,
       exercise: exerciseItem
     })
-    
+    return avgArray
   })
- console.log(avgArray);
- setAvgData(avgArray)
+  // console.log(avgArray);
+  return avgArray
 }
 
+const avgArrayConstant = getAverageScore();
+// console.log('app.js avgArray: ', avgArrayConstant)
 
   return (
     <div className="App">
@@ -110,25 +128,31 @@ function getAverageScore() {
           <Routes>
             <Route 
               path="/" 
-              element={<Main 
-                        data={avgData} 
-                        students={students} 
-                        exercises={exercises}
-                        formData={formData}
-                        avgData={avgData}
-                      />} 
+              element={
+                <Main 
+                  data={avgArrayConstant} 
+                  students={students} 
+                  exercises={exercises}
+                  formData={formData}
+                  handleFormData={handleFormData}
+                />} 
             />
             <Route 
               path="/:username" 
-              element={<UserProfile 
-                        data={filteredData} 
-                        students={students} 
-                        exercises={exercises}
-                        formData={formData}
-                      />} 
+              element={
+                <UserProfile 
+                  data={filteredData} 
+                  mockData={mockData}
+                  students={students} 
+                  exercises={exercises}
+                  formData={formData}
+                  handleFormData={handleFormData}
+                />} 
             />
           </Routes>
+          
         </div> 
+        <Footer />
       </Router> 
     </div>
   )

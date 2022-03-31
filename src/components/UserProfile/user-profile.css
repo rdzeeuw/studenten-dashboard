@@ -2,12 +2,39 @@
   margin: 2rem auto;
   width: 100%;
   padding: 1em 3em;
-  padding-bottom: 5rem;
+  padding-bottom: 7rem;
 }
 
 .user-content .welcome {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 2em;
   text-transform: uppercase;
+}
+
+.user-content .student-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 3em;
+  background-color: var(--color-purple);
+  color: var(--color-white);
+  padding: .2em;
+}
+
+.user-content .student-info .avatar {
+  width: 100px;
+  aspect-ratio: 1;
 }
 
 .user-content .back-btn {

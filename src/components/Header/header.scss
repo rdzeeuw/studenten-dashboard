@@ -12,17 +12,23 @@
     background: linear-gradient(60deg, var(--color-red), var(--color-purple)) ;
     color: rgb(239, 231, 234);
     padding: .5em;
-    .header-title {
-        padding: 1rem;
-        text-transform: uppercase;
-        position: relative;
+    .logo {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        .header-title {
+            padding: 1rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+        h3 {
+            color: var(--color-black-3);
+            position: absolute;
+            top: 60px;
+            left: 120px;
+        }
     }
-    h3 {
-        color: var(--color-black-3);
-        position: absolute;
-        top: 60px;
-        left: 120px;
-    }
+    
 }
 
 

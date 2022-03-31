@@ -30,5 +30,6 @@ body {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
+  min-height: calc(100vh - 50px);
 }
 /*# sourceMappingURL=base.css.map */
