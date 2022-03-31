@@ -33,7 +33,8 @@ function App() {
         }
     }) 
     setStudentData(cleanedData)
-    setFilteredData(getAverageScore())
+    // const filtered = getAverageScore()
+    // setFilteredData(filtered)
     
   }) 
   },[])
@@ -57,7 +58,7 @@ function handleFormData(event) {
 function filterByName(event) {
   const name = event.target.name
   if(name === 'allStudents'){
-    const filtered = avgData
+    const filtered = getAverageScore()
     console.log(filtered)
     setFilteredData(filtered)
   } else {
@@ -95,8 +96,6 @@ function getAverageScore() {
 }
 
 
-
-
   return (
     <div className="App">
       <Router>
@@ -112,7 +111,7 @@ function getAverageScore() {
             <Route 
               path="/" 
               element={<Main 
-                        data={filteredData} 
+                        data={avgData} 
                         students={students} 
                         exercises={exercises}
                         formData={formData}

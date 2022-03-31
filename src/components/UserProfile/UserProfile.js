@@ -10,26 +10,18 @@ function UserProfile({data, student, exercises, formData}) {
   return (
     <div className="user-content">
         <h1 className="welcome">Welcome {username}!</h1>
-        <button onClick={() => navigate('/')}>Go back</button>
-
+        <button className="back-btn" onClick={() => navigate('/')}>Go back</button>
         <VictoryChart width={800} height={300}
           domainPadding={{x: 5}}
-          padding={{top: 30, bottom: 100, left: 70, right: 70}}
-          // containerComponent={
-          //   <VictoryZoomContainer/>
-          // }
-        >
-          <VictoryLabel text={`Difficulty (yellow) and fun (red) rating of ${username}`} x={425} y={0} textAnchor="middle"/>
+          padding={{top: 30, bottom: 100, left: 70, right: 70}} >
+          <VictoryLabel text={`Difficulty (red) and fun (blue) rating of ${username}`} x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  
-          //   style={{ 
-          //     tickLabels: { angle: -40, fontSize: 10, padding: 30},
-             
-          //  }} 
+          
             tickValues={[exercises]} 
             tickLabelComponent={
               <VictoryLabel 
                 dy={-6} 
-                style={{ angle: -40, fontSize: 10, padding: 30, textAnchor: "end"}} />}
+                style={{ angle: -40, fontSize: 9, padding: 30, textAnchor: "end"}} />}
             />
           <VictoryAxis dependentAxis 
             tickFormat={(tick) => `${Math.round(tick)}`}
@@ -39,23 +31,22 @@ function UserProfile({data, student, exercises, formData}) {
           <VictoryGroup offset={-5}>
           {formData.difficulty &&
             <VictoryBar 
-              style={{ data: { fill: "tomato"} }} 
+              style={{ data: { fill: "#5B6AE9"} }} 
               data={data} 
-              
               x='exercise' 
               y='difficulty'
-              // alignment="start"
               barRatio={1}  
-              // animate 
-              />
+              animate 
+            />
           }
           {formData.funFactor &&
             <VictoryBar 
-              style={{ data: { fill: "gold"} }} 
+              style={{ data: { fill: "#ec1840"} }} 
               data={data} 
               x='exercise' 
               y='funFactor' 
               barRatio={1}
+              animate
             />
           }
             </VictoryGroup>

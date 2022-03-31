@@ -9,4 +9,51 @@
   font-size: 2em;
   text-transform: uppercase;
 }
+
+.user-content .back-btn {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  margin: 5px;
+  background: transparent;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-black-2);
+  -webkit-transition: var(--speed-normal);
+  transition: var(--speed-normal);
+  border: 1px solid var(--color-red);
+  cursor: pointer;
+}
+
+.user-content .back-btn:hover {
+  border: 1px solid transparent;
+  background: var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png);
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+  background-size: 180px;
+  -webkit-animation: animate var(--speed-fast) steps(8) forwards;
+          animation: animate var(--speed-fast) steps(8) forwards;
+  color: var(--color-white);
+}
+
+@-webkit-keyframes animate {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: -480px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: -480px;
+  }
+}
 /*# sourceMappingURL=user-profile.css.map */

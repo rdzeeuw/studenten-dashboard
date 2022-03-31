@@ -7,44 +7,40 @@ function Main({data, student, exercises, formData, avgData}) {
   console.log(data)
   return (
     <main className="main">
-        <h3 className="main-title">Welcome students!</h3>
+        <h3 className="welcome">Welcome students!</h3>
 
         <VictoryChart width={800} height={300}
-          domainPadding={{x: 15}}
-          padding={{top: 30, bottom: 100, left: 70, right: 70}}
-          // containerComponent={
-          //   <VictoryZoomContainer/>
-          // }
-        >
-          <VictoryLabel text="Difficulty (yellow) and fun (red) rating of all students" x={425} y={0} textAnchor="middle"/>
+          domainPadding={{x: 5}}
+          padding={{top: 30, bottom: 100, left: 70, right: 70}} >
+          <VictoryLabel text="Difficulty (red) and fun (blue) rating of all students" x={425} y={0} textAnchor="middle"/>
           <VictoryAxis  
-            // style={{ tickLabels: { angle: -40, fontSize: 7, padding: 20} }} 
             tickValues={[exercises]} 
             tickLabelComponent={
-              <VictoryLabel 
-                dy={-6} 
-                style={{ angle: -40, fontSize: 10, padding: 30, textAnchor: "end"}} />}
-            />
-          <VictoryAxis dependentAxis tickFormat={(tick) => `${Math.round(tick)}`}/>
+          <VictoryLabel 
+            dy={-6} 
+            style={{ angle: -40, fontSize: 8, padding: 30, textAnchor: "end"}} />}
+          />
+          <VictoryAxis dependentAxis />
           <VictoryGroup offset={-5}>
           {formData.difficulty &&
             <VictoryBar 
-              style={{ data: { fill: "tomato"} }} 
+              style={{ data: { fill: "#5B6AE9"} }} 
               data={data} 
               x='exercise' 
               y='avgDifficulty'
               // alignment="start"
               barRatio={1}  
-              // animate 
+              animate 
               />
             }
           {formData.funFactor &&
             <VictoryBar 
-              style={{ data: { fill: "gold"} }} 
+              style={{ data: { fill: "#ec1840"} }} 
               data={data} 
               x='exercise' 
               y='avgFun' 
               barRatio={2}
+              animate
             />
           }
             </VictoryGroup>

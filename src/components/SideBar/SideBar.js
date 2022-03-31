@@ -1,17 +1,19 @@
 import React from 'react';
 import './sidebar.css'
 import {Link} from 'react-router-dom'
+import { GoPerson as Person } from "react-icons/go";
+import { BsFillPeopleFill as People } from "react-icons/bs";
 
 function SideBar({students, exercises, handleFormData, formData, filterByName}) {
   return (
     <section className="side-bar">
-        <h3>sidebar</h3>
+        <h3>Select a user Profile</h3>
         <div className="student-btns">
           <Link to='/'>
             <button 
               className="student-btn"
               name="allStudents"
-              onClick={filterByName}>All students</button>
+              onClick={filterByName}><People className="person people" />All students</button>
           </Link>
           {students.map(student => {
             return (
@@ -19,8 +21,8 @@ function SideBar({students, exercises, handleFormData, formData, filterByName}) 
                 <button 
                   className="student-btn"
                   name={student}
-                  onClick={filterByName}>{student}</button>
-                  </Link>
+                  onClick={filterByName}><Person className="person" />{student}</button>
+              </Link>
               )
             })}
         </div>    

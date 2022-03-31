@@ -12,15 +12,27 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: #412741;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: linear-gradient(60deg, var(--color-red), var(--color-purple));
   color: #efe7ea;
+  padding: .5em;
 }
 
-.header-title {
+.header .header-title {
   padding: 1rem;
   text-transform: uppercase;
+  position: relative;
+}
+
+.header h3 {
+  color: var(--color-black-3);
+  position: absolute;
+  top: 60px;
+  left: 120px;
 }
 /*# sourceMappingURL=header.css.map */
