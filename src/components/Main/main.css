@@ -7,9 +7,11 @@
 }
 
 .main .welcome {
-  font-size: 2em;
+  font-size: 3em;
   text-transform: uppercase;
   margin-bottom: 1em;
+  color: var(--color-purple);
+  font-family: var(--font-cursive);
 }
 
 .main .checkboxes {

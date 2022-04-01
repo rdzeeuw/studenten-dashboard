@@ -69,13 +69,13 @@ function UserProfile({data, mockData, exercises, handleFormData, formData}) {
       {formData.lineGraph ?
       <VictoryChart 
         width={800} 
-        height={300}
+        height={400}
         domainPadding={{x: 5}}
-        padding={{top: 30, bottom: 100, left: 70, right: 70}} >
+        padding={{top: 0, bottom: 150, left: 30, right: 30}} >
         <VictoryLabel 
           text={`Difficulty (red) and fun (blue) rating of ${username}`} 
           x={425} 
-          y={0} 
+          y={-20} 
           textAnchor="middle"
           style={{fontFamily: "Poppins, sans-serif", fontSize: 8}}/>
         <VictoryAxis  
@@ -123,13 +123,13 @@ function UserProfile({data, mockData, exercises, handleFormData, formData}) {
 
       <VictoryChart
         width={800} 
-        height={300}
+        height={400}
         domainPadding={{x: 5}}
-        padding={{top: 30, bottom: 100, left: 40, right: 40}} >
+        padding={{top: 0, bottom: 150, left: 30, right: 30}} >
       <VictoryLabel 
         text="Difficulty (red) and fun (blue) rating of all students" 
         x={425} 
-        y={0} 
+        y={-20} 
         textAnchor="middle"
         style={{fontFamily: "Poppins, sans-serif", fontSize: 8}}/>
       <VictoryAxis  

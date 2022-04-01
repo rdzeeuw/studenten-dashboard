@@ -3,8 +3,9 @@ import './sidebar.css'
 import {Link} from 'react-router-dom'
 import { GoPerson as Person } from "react-icons/go";
 import { BsFillPeopleFill as People } from "react-icons/bs";
+import { nanoid } from 'nanoid'
 
-function SideBar({students, handleFormData, formData, filterByName}) {
+function SideBar({students, filterByName}) {
   return (
     <section className="side-bar">
         <h3>Select a user Profile</h3>
@@ -17,7 +18,7 @@ function SideBar({students, handleFormData, formData, filterByName}) {
           </Link>
           {students.map(student => {
             return (
-              <Link to={`/${student}`} key={student.name}>
+              <Link to={`/${student}`} key={nanoid()}>
                 <button 
                   className="student-btn"
                   name={student}

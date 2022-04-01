@@ -3,7 +3,7 @@ import './main.css'
 import {VictoryBar, VictoryChart, VictoryAxis, VictoryGroup, VictoryLabel, VictoryLine} from 'victory'
 
 function Main({data, exercises, handleFormData, formData}) {
-  // console.log('data in main: ', data)
+  console.log('data in main: ', data)
   
   return (
     <main className="main">
@@ -48,13 +48,13 @@ function Main({data, exercises, handleFormData, formData}) {
         {formData.lineGraph ? 
         <VictoryChart 
           width={800} 
-          height={300}
+          height={400}
           domainPadding={{x: 5}}
-          padding={{top: 30, bottom: 100, left: 70, right: 70}} >
+          padding={{top: 0, bottom: 150, left: 30, right: 30}} >
         <VictoryLabel 
           text="Difficulty (red) and fun (blue) rating of all students" 
           x={425} 
-          y={0} 
+          y={-20} 
           textAnchor="middle"
           style={{fontFamily: "Poppins, sans-serif", fontSize: 8}}/>
         <VictoryAxis  
@@ -74,7 +74,6 @@ function Main({data, exercises, handleFormData, formData}) {
             data={data} 
             x='exercise' 
             y='avgDifficulty'
-            // alignment="start" 
             animate={{
               duration: 2000,
               onLoad: { duration: 1000 }
@@ -100,13 +99,13 @@ function Main({data, exercises, handleFormData, formData}) {
 
       <VictoryChart 
         width={800} 
-        height={300}
+        height={400}
         domainPadding={{x: 5}}
-        padding={{top: 30, bottom: 100, left: 40, right: 40}} >
+        padding={{top: 0, bottom: 150, left: 30, right: 30}} >
         <VictoryLabel 
           text="Difficulty (red) and fun (blue) rating of all students" 
           x={425} 
-          y={0} 
+          y={-20} 
           textAnchor="middle"
           style={{fontFamily: "Poppins, sans-serif", fontSize: 8}}/>
         <VictoryAxis  
@@ -124,7 +123,6 @@ function Main({data, exercises, handleFormData, formData}) {
           data={data} 
           x='exercise' 
           y='avgDifficulty'
-          // alignment="start"
           barRatio={.5}  
           animate 
         />

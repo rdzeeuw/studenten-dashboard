@@ -8,8 +8,11 @@
         justify-content: space-between;
         align-items: center;
         font-size: 2em;
-        text-transform: uppercase;
-        
+        text-transform: uppercase; 
+        h2 {
+          font-family: var(--font-cursive);
+          color: var(--color-purple)
+        }
     }
     .student-info {
       display: flex;
@@ -22,6 +25,7 @@
         width: 100px;
         aspect-ratio: 1;
       }
+      margin-bottom: 2em;
     }
     .back-btn {
         position: relative;
@@ -55,6 +59,13 @@
           background-position-y: -480px;
         }
       }
+      .checkboxes {
+        display: flex;
+        input {
+            margin: .5em;
+      
+        }
+    }
 }
 
 

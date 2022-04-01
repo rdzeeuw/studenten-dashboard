@@ -121,17 +121,14 @@ const avgArrayConstant = getAverageScore();
         <div className="container">
           <SideBar 
             students={students} 
-            exercises={exercises} 
             filterByName={filterByName}
-            handleFormData={handleFormData}
-            formData={formData}/>
+            />
           <Routes>
             <Route 
               path="/" 
               element={
                 <Main 
                   data={avgArrayConstant} 
-                  students={students} 
                   exercises={exercises}
                   formData={formData}
                   handleFormData={handleFormData}
@@ -143,14 +140,12 @@ const avgArrayConstant = getAverageScore();
                 <UserProfile 
                   data={filteredData} 
                   mockData={mockData}
-                  students={students} 
                   exercises={exercises}
                   formData={formData}
                   handleFormData={handleFormData}
                 />} 
             />
           </Routes>
-          
         </div> 
         <Footer />
       </Router> 

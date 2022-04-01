@@ -19,6 +19,11 @@
   text-transform: uppercase;
 }
 
+.user-content .welcome h2 {
+  font-family: var(--font-cursive);
+  color: var(--color-purple);
+}
+
 .user-content .student-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,6 +35,7 @@
   background-color: var(--color-purple);
   color: var(--color-white);
   padding: .2em;
+  margin-bottom: 2em;
 }
 
 .user-content .student-info .avatar {
@@ -82,5 +88,15 @@
   100% {
     background-position-y: -480px;
   }
+}
+
+.user-content .checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-content .checkboxes input {
+  margin: .5em;
 }
 /*# sourceMappingURL=user-profile.css.map */
