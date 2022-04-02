@@ -2,7 +2,7 @@
     margin: 2rem auto;
     width: 100%;
     padding: 1em 3em;
-    padding-bottom: 7rem;
+    padding-bottom: 15rem;
     .welcome {
         display: flex;
         justify-content: space-between;
@@ -21,9 +21,11 @@
       background-color: var(--color-purple);
       color: var(--color-white);
       padding: .2em;
-      .avatar {
-        width: 100px;
+      .profile-pic {
         aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        
       }
       margin-bottom: 2em;
     }

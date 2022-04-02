@@ -38,9 +38,8 @@ function App() {
   }) 
   },[])
 
-
   function getMockData() {
-    fetch('mock_data.json', {
+    fetch('https://randomuser.me/api/?results=100&noinfo', {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -51,13 +50,15 @@ function App() {
       })
       .then(function(myJson) {
         // console.log(myJson);
-        setMockData(myJson)
+        setMockData(myJson.results)
       })
   }
 
   useEffect(()=> {
     getMockData()
   },[])
+
+  // console.log('mockdata: ', mockData)
 
   // handle checkboxes and setting formData state ----------------
 function handleFormData(event) {
