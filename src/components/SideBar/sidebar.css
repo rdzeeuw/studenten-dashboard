@@ -11,7 +11,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-inline: 3rem;
+  padding-inline: 4vw;
 }
 
 .side-bar .student-btns {
@@ -23,6 +23,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 100%;
 }
 
 .side-bar .student-btns .student-btn {
@@ -88,8 +89,14 @@
   text-transform: uppercase;
 }
 
-.side-bar form {
-  color: var(--color-black-2);
-  text-align: center;
+@media only screen and (max-width: 400px) {
+  .side-bar .student-btns {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .side-bar .student-btns .student-btn {
+    width: 160px;
+  }
 }
 /*# sourceMappingURL=sidebar.css.map */

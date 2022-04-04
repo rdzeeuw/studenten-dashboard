@@ -1,3 +1,20 @@
-input {
-    color: red;
+.legenda {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+
+    .red {
+        background-color: var(--color-red);
+        width: 20px;
+        aspect-ratio: 1;
+        display: inline-block;
+        border-radius: 50%;
+    }
+    .blue {
+        background-color: var(--color-purple);
+        width: 20px;
+        aspect-ratio: 1;
+        display: inline-block;
+        border-radius: 50%;
+    }
 }

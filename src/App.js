@@ -46,11 +46,9 @@ function App() {
         'Accept': 'application/json'
       }
     }).then(function(response){
-        // console.log(response)
         return response.json();
       })
       .then(function(myJson) {
-        // console.log(myJson);
         setMockData(myJson.results)
       })
   }
@@ -70,49 +68,40 @@ function App() {
     })
   }
 
-// handle button clicks en filtering data ------------------
-function filterByName(event) {
-  const name = event.target.name
-  if(name === 'allStudents'){
-    const filtered = getAverageScore()
-    // console.log(filtered)
-    setFilteredData(filtered)
-  } else {
-    const filtered = studentData.filter((item) => {
-      if(item.name === name) {
-        return item
-      } else {
-        return ''
+  // handle button clicks en filtering data ------------------
+  function filterByName(event) {
+    const name = event.target.name
+    if(name === 'allStudents'){
+      const filtered = getAverageScore()
+      setFilteredData(filtered)
+    } else {
+      const filtered = studentData.filter((item) => {
+        if(item.name === name) {
+          return item
+        } else {
+          return ''
+        }
+      })
+
+      setFilteredData(filtered)
+    } 
+  }
+
+  // calculating average scores ---------------------------
+  function getAverageScore() {
+    return exercises.map(exerciseItem => {
+      let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem)
+      const avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
+      const avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
+      return {
+        avgDifficulty: avgDiff,
+        avgFun: avgFun,
+        exercise: exerciseItem
       }
     })
+  }
 
-    // console.log(filtered)
-    setFilteredData(filtered)
-  } 
-}
-
-// calculating average scores ---------------------------
-function getAverageScore() {
-  let avgArray = []
-
-  exercises.map(exerciseItem => {
-    let filteredData = studentData.filter(({ exercise }) => exercise === exerciseItem)
-    // console.log(filteredData)
-    const avgDiff = filteredData.reduce((r, c) => r + c.difficulty, 0) / filteredData.length;
-    const avgFun = filteredData.reduce((r, c) => r + c.funFactor, 0) / filteredData.length;
-    avgArray.push({
-      avgDifficulty: avgDiff,
-      avgFun: avgFun,
-      exercise: exerciseItem
-    })
-    return avgArray
-  })
-  // console.log(avgArray);
-  return avgArray
-}
-
-const avgArrayConstant = getAverageScore();
-// console.log('app.js avgArray: ', avgArrayConstant)
+  const avgArrayConstant = getAverageScore();
 
   return (
     <div className="App">

@@ -1,4 +1,26 @@
-input {
-  color: red;
+.legenda {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .5em;
+}
+
+.legenda .red {
+  background-color: var(--color-red);
+  width: 20px;
+  aspect-ratio: 1;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.legenda .blue {
+  background-color: var(--color-purple);
+  width: 20px;
+  aspect-ratio: 1;
+  display: inline-block;
+  border-radius: 50%;
 }
 /*# sourceMappingURL=data-form.css.map */

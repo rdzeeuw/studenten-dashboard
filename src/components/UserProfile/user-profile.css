@@ -1,7 +1,7 @@
 .user-content {
   margin: 2rem auto;
   width: 100%;
-  padding: 1em 3em;
+  padding: 1em 4vw;
   padding-bottom: 15rem;
 }
 
@@ -103,5 +103,22 @@
 
 .user-content .checkboxes input {
   margin: .5em;
+}
+
+.user-content .graph-small {
+  display: none;
+}
+
+.user-content .graph-big {
+  display: inline-block;
+}
+
+@media only screen and (max-width: 700px) {
+  .user-content .graph-small {
+    display: inline-block;
+  }
+  .user-content .graph-big {
+    display: none;
+  }
 }
 /*# sourceMappingURL=user-profile.css.map */

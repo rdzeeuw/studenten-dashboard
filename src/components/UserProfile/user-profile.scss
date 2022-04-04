@@ -1,73 +1,87 @@
 .user-content {
-    margin: 2rem auto;
-    width: 100%;
-    padding: 1em 3em;
-    padding-bottom: 15rem;
-    .welcome {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 2em;
-        text-transform: uppercase; 
-        h2 {
-          font-family: var(--font-cursive);
-          color: var(--color-purple)
-        }
+  margin: 2rem auto;
+  width: 100%;
+  padding: 1em 4vw;
+  padding-bottom: 15rem;
+  .welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2em;
+    text-transform: uppercase; 
+    h2 {
+      font-family: var(--font-cursive);
+      color: var(--color-purple)
     }
-    .student-info {
+  }
+  .student-info {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+    background-color: var(--color-purple);
+    color: var(--color-white);
+    padding: .2em;
+    .profile-pic {
+      aspect-ratio: 1;
       display: flex;
       align-items: center;
-      gap: 3em;
-      background-color: var(--color-purple);
+    }
+    margin-bottom: 2em;
+  }
+  .back-btn {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    margin: 5px;
+    background: transparent;
+    line-height: 40px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-black-2);
+    transition: var(--speed-normal);
+    border: 1px solid var(--color-red);
+    cursor: pointer;
+    &:hover {
+      border: 1px solid transparent;
+      background: var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px
+      transition-delay: 0.5s;
+      background-size: 180px;
+      animation: animate var(--speed-fast) steps(8) forwards;
       color: var(--color-white);
-      padding: .2em;
-      .profile-pic {
-        aspect-ratio: 1;
-        display: flex;
-        align-items: center;
-        
-      }
-      margin-bottom: 2em;
     }
-    .back-btn {
-        position: relative;
-        width: 150px;
-        height: 40px;
-        margin: 5px;
-        background: transparent;
-        line-height: 40px;
-        letter-spacing: 2px;
-        text-decoration: none;
-        text-transform: uppercase;
-        text-align: center;
-        color: var(--color-black-2);
-        transition: var(--speed-normal);
-        border: 1px solid var(--color-red);
-        cursor: pointer;
-        &:hover {
-          border: 1px solid transparent;
-          background: var(--color-red) url(https://i.postimg.cc/wBXGXbWN/pixel.png); // 360px x 1080px
-          transition-delay: 0.5s;
-          background-size: 180px;
-          animation: animate var(--speed-fast) steps(8) forwards;
-          color: var(--color-white);
-        }
-      }
-      @keyframes animate {
-        0% {
-          background-position-y: 0;
-        }
-        100% {
-          background-position-y: -480px;
-        }
-      }
-      .checkboxes {
-        display: flex;
-        input {
-            margin: .5em;
-      
-        }
+  }
+  @keyframes animate {
+    0% {
+      background-position-y: 0;
     }
+    100% {
+      background-position-y: -480px;
+    }
+  }
+  .checkboxes {
+    display: flex;
+    input {
+        margin: .5em;
+  
+    }
+  }
+  .graph-small {
+    display: none;
+  }
+  .graph-big {
+      display: inline-block;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .graph-small {
+        display: inline-block;
+    }
+    .graph-big {
+        display: none;
+    }
+  }
 }
 
 

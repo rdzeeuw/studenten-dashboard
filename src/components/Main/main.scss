@@ -3,7 +3,7 @@
 .main {
     margin: 2rem auto;
     width: 100%;
-    padding: 1em 3em;
+    padding: 1em 4vw;
     color: var(--color-black-2);
     padding-bottom: 12rem;
     .welcome {
@@ -19,4 +19,20 @@
             margin: .5em;
         }
     }
+    .graph-small {
+        display: none;
+    }
+    .graph-big {
+        display: inline-block;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .graph-small {
+            display: inline-block;
+        }
+        .graph-big {
+            display: none;
+        }
+    }
 }
+
