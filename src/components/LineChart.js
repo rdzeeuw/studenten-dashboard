@@ -33,10 +33,10 @@ function LineChart({data, exercises, formData, difficulty, funFactor}) {
             data={data} 
             x='exercise' 
             y={difficulty}
-            animate={{
-              duration: 2000,
-              onLoad: { duration: 1000 }
-            }} 
+            // animate={{
+            //   duration: 2000,
+            //   onLoad: { duration: 1000 }
+            // }} 
             />
           }
         {formData.funFactor &&
@@ -47,10 +47,10 @@ function LineChart({data, exercises, formData, difficulty, funFactor}) {
             data={data} 
             x='exercise' 
             y={funFactor} 
-            animate={{
-              duration: 2000,
-              onLoad: { duration: 1000 }
-            }} 
+            // animate={{
+            //   duration: 2000,
+            //   onLoad: { duration: 1000 }
+            // }} 
           />
         }
           </VictoryGroup>

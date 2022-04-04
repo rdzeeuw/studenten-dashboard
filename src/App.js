@@ -35,6 +35,7 @@ function App() {
         }
     }) 
     setStudentData(cleanedData)
+
   }) 
   },[])
 
@@ -58,18 +59,16 @@ function App() {
     getMockData()
   },[])
 
-  // console.log('mockdata: ', mockData)
-
   // handle checkboxes and setting formData state ----------------
-function handleFormData(event) {
-  const {name, value, type, checked} = event.target
-  setFormData(prevData => {
-    return {
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value
-    }
-  })
-}
+  function handleFormData(event) {
+    const {name, value, type, checked} = event.target
+    setFormData(prevData => {
+      return {
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value
+      }
+    })
+  }
 
 // handle button clicks en filtering data ------------------
 function filterByName(event) {
